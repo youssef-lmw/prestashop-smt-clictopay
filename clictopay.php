@@ -344,6 +344,11 @@ class Clictopay extends PaymentModule
                     'type' => 'hidden',
                     'value' =>  $this->context->cart->id,
                 ],
+                'amount' => [
+                    'name' => 'amount',
+                    'type' => 'hidden',
+                    'value' => sprintf("%.3f", $this->context->cart->getOrderTotal()),
+                ],
                 'userName' => [
                     'name' => 'userName',
                     'type' => 'hidden',
