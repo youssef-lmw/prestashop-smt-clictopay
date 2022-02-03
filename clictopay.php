@@ -344,10 +344,15 @@ class Clictopay extends PaymentModule
                     'type' => 'hidden',
                     'value' =>  $this->context->cart->id,
                 ],
+                'returnUrl' => [
+                    'name' => 'returnUrl',
+                    'type' => 'hidden',
+                    'value' => $this->context->link->getPageLink('index',true).'index.php?controller=order-confirmation',
+                ],
                 'amount' => [
                     'name' => 'amount',
                     'type' => 'hidden',
-                    'value' => sprintf("%.3f", $this->context->cart->getOrderTotal()),
+                    'value' => ($this->context->cart->getOrderTotal() * 1000),
                 ],
                 'userName' => [
                     'name' => 'userName',
