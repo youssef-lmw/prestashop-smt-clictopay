@@ -339,6 +339,11 @@ class Clictopay extends PaymentModule
                     'type' => 'hidden',
                     'value' => Configuration::get('SMT_ID'),
                 ],
+                'orderNumber' => [
+                    'name' => 'orderNumber',
+                    'type' => 'hidden',
+                    'value' =>  $this->context->cart->id,
+                ],
                 'userName' => [
                     'name' => 'userName',
                     'type' => 'hidden',
