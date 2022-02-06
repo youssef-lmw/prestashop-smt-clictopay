@@ -34,7 +34,7 @@ class Clictopay extends PaymentModule
     {
         $this->name = 'clictopay';
         $this->tab = 'payments_gateways';
-        $this->version = '2.3';
+        $this->version = '2.4';
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         $this->author = 'Youssef Gharbi';
         $this->is_eu_compatible = 1;
@@ -312,7 +312,7 @@ class Clictopay extends PaymentModule
             die($this->module->l('This payment method is not available.', 'validation'));
 
         $payment_options->setCallToActionText($action_text)
-            ->setAction($this->getUrl())
+            ->setAction($this->getUrl('test'))
             ->setInputs([
                 'Reference' => [
                     'name' => 'Reference',
@@ -403,12 +403,13 @@ class Clictopay extends PaymentModule
     }
 
     ////////////////////////////////////////////////////////////////////
-    public function getUrl()
+    public function getUrl($x)
     {
         if (Configuration::get('SMT_SANDBOX') == 1) {
-            return 'https://test.clictopay.com/payment/rest/register.do';
+            return Media::getMediaPath(_PS_MODULE_DIR_ . $this->name . '/controllers/front/submit-sandbox.php');
         } else {
-            return 'https://ipay.clictopay.com/payment/rest/register.do';
+            return Media::getMediaPath(_PS_MODULE_DIR_ . $this->name . '/controllers/front/submit.php');
+            //return 'https://ipay.clictopay.com/payment/rest/register.do';
         }
     }
 
